@@ -12,6 +12,7 @@ import tasksRoutes from './routes/tasks';
 import usersRoutes from './routes/users';
 import sesionesRoutes from './routes/sesiones';
 import gruposRoutes from './routes/grupos';
+import gananciasRoutes from './routes/ganancias';
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(tasksRoutes);
 app.use(usersRoutes);
 app.use(sesionesRoutes);
 app.use(gruposRoutes);
+app.use(gananciasRoutes);
 
 app.use('/docs', swaggerUI.serve, swaggerUI.setup(specs))
 

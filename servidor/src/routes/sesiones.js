@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import {saveSesion, getSesion, getSesionCount, getSesiones, getSesionesToday, getSesionesByDate, 
-    getSesionesByGroup, getSesionesByDateAndGroup, deleteSesion, updateSesion, getSesionAnterior, getSesionPosterior} from '../controllers/sesiones'
+    getSesionesByGroup, getSesionesByDateAndGroup, deleteSesion, updateSesion, getSesionAnterior,
+    getSesionPosterior, saveRegularSesion, cancelSesion} from '../controllers/sesiones'
 const router = Router()
 
 /**
@@ -36,6 +37,12 @@ router.get('/sesiones/count', getSesionCount)
 
 // Busqueda de una sesion por id
 router.get('/sesiones/:id', getSesion)
+
+// Cancelar una sesion en la BD
+router.post('/sesiones/cancelSesion/:idSesion', cancelSesion)
+
+// Creacion de sesiones regular en la BD
+router.post('/sesiones/regular/:fechaFin', saveRegularSesion)
 
 // Creacion de sesion nueva en la BD
 router.post('/sesiones', saveSesion)

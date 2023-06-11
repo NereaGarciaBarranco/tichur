@@ -14,6 +14,7 @@ var _tasks = _interopRequireDefault(require("./routes/tasks"));
 var _users = _interopRequireDefault(require("./routes/users"));
 var _sesiones = _interopRequireDefault(require("./routes/sesiones"));
 var _grupos = _interopRequireDefault(require("./routes/grupos"));
+var _ganancias = _interopRequireDefault(require("./routes/ganancias"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 var specs = (0, _swaggerJsdoc["default"])(_swaggerOptions.options);
 var app = (0, _express["default"])();
@@ -24,6 +25,7 @@ app.use(_tasks["default"]);
 app.use(_users["default"]);
 app.use(_sesiones["default"]);
 app.use(_grupos["default"]);
+app.use(_ganancias["default"]);
 app.use('/docs', _swaggerUiExpress["default"].serve, _swaggerUiExpress["default"].setup(specs));
 var _default = app;
 exports["default"] = _default;

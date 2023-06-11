@@ -102,6 +102,29 @@ export const getSesionCount = async (req, res) => {
     res.json(rows[0]["COUNT(*)"]);
 }
 
+// Cancela una sesion
+export const cancelSesion = async (req, res) => {
+    const connection = await connect();
+    const [results] = await connection.query(   'CALL `tasks_db`.`cancel_session`(?)', [req.params.idSesion]);
+    res.json(results[0]);
+}
+
+// Crea regular sessions hasta la fecha indicada
+export const saveRegularSesion = async (req, res) => {
+    const connection = await connect();
+    const [results] = await connection.query(   'CALL `tasks_db`.`create_regular_sessions`(?, ?, ?, ?, ?, ?)', 
+    [   
+        req.body.hora_inicio,
+        req.body.hora_fin,
+        req.body.idGrupo,
+        req.body.email,
+        req.params.fechaFin,
+        req.body.fecha
+    ]);
+    // Devolvemos a react native las sesiones que se han creado
+    res.json(results[0]);
+}
+
 // Guarda una nueva sesion a traves de la recepcion de un JSON
 export const saveSesion = async (req, res) => {
     const connection = await connect();
@@ -116,10 +139,7 @@ export const saveSesion = async (req, res) => {
         req.body.deberes,
         req.body.email
     ]);
-    res.json({
-        id: results.insertId,
-        ...req.body,
-    });
+    res.sendStatus(201);
 }
 
 // Borra una sesion a traves de su identificador

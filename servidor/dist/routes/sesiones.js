@@ -42,6 +42,12 @@ router.get('/sesiones/count', _sesiones.getSesionCount);
 // Busqueda de una sesion por id
 router.get('/sesiones/:id', _sesiones.getSesion);
 
+// Cancelar una sesion en la BD
+router.post('/sesiones/cancelSesion/:idSesion', _sesiones.cancelSesion);
+
+// Creacion de sesiones regular en la BD
+router.post('/sesiones/regular/:fechaFin', _sesiones.saveRegularSesion);
+
 // Creacion de sesion nueva en la BD
 router.post('/sesiones', _sesiones.saveSesion);
 
