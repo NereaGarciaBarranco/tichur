@@ -25,13 +25,14 @@ export const updateGrupo = async (req, res) => {
 export const saveGrupo = async (req, res) => {
     const connection = await connect();
     const [results] = await connection.query(   'INSERT INTO grupos(nombre, nivel, num_alumnos, ' 
-                                             + 'comentarios, email) VALUES (?,?,?,?,?)', 
+                                             + 'comentarios, email, tarifa) VALUES (?,?,?,?,?,?)', 
     [   
         req.body.nombre, 
         req.body.nivel,
         req.body.num_alumnos,
         req.body.comentarios,
-        req.body.email
+        req.body.email,
+        req.body.tarifa
     ]);
     res.json({
         id: results.insertId,

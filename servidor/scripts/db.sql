@@ -326,3 +326,32 @@ BEGIN
 END//
 
 DELIMITER ;
+
+USE `tasks_db`;
+DROP procedure IF EXISTS `obtain_actual_profit_by_email`;
+
+USE `tasks_db`;
+DROP procedure IF EXISTS `tasks_db`.`obtain_actual_profit_by_email`;
+;
+
+DELIMITER $$
+USE `tasks_db`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtain_actual_profit_by_email`(IN correo VARCHAR(255))
+BEGIN
+SELECT g.nombre, g.tarifa,
+           CASE
+               WHEN g.num_alumnos = 1 THEN (SELECT COUNT(idSesion) 
+               FROM sesiones WHERE idGrupo = g.idGrupo 
+               AND MONTH(fecha) = MONTH(CURRENT_DATE()) 
+               AND YEAR(fecha) = YEAR(CURRENT_DATE()) 
+				) * g.tarifa
+               WHEN g.num_alumnos > 1 THEN g.num_alumnos * g.tarifa
+               ELSE 0
+           END AS ganancias
+    FROM grupos AS g
+    WHERE g.email = correo;
+END$$
+
+DELIMITER ;
+;
+

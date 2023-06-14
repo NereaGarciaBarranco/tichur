@@ -1,16 +1,18 @@
 import {Router} from 'express';
-import { getMonthlyProfits } from '../controllers/ganancias'
+import { getActualProfit, getMonthlyProfits } from '../controllers/ganancias'
 const router = Router()
 
 /**
  * @swagger
  * /tasks:
  * get:
- *  summary: Obtiene todas las sesiones de la BD
+ *  summary: 
  */
 
 // Obtener ganancias por mes
-
 router.get('/ganancias/monthly/:email', getMonthlyProfits)
+
+// Obtiene las ganancias del mes actual
+router.get('/ganancias/actualProfit/:email', getActualProfit)
 
 export default router

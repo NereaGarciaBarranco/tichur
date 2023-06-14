@@ -88,7 +88,7 @@ var saveGrupo = /*#__PURE__*/function () {
         case 2:
           connection = _context3.sent;
           _context3.next = 5;
-          return connection.query('INSERT INTO grupos(nombre, nivel, num_alumnos, ' + 'comentarios, email) VALUES (?,?,?,?,?)', [req.body.nombre, req.body.nivel, req.body.num_alumnos, req.body.comentarios, req.body.email]);
+          return connection.query('INSERT INTO grupos(nombre, nivel, num_alumnos, ' + 'comentarios, email, tarifa) VALUES (?,?,?,?,?,?)', [req.body.nombre, req.body.nivel, req.body.num_alumnos, req.body.comentarios, req.body.email, req.body.tarifa]);
         case 5:
           _yield$connection$que = _context3.sent;
           _yield$connection$que2 = _slicedToArray(_yield$connection$que, 1);

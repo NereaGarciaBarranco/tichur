@@ -12,11 +12,13 @@ var router = (0, _express.Router)();
  * @swagger
  * /tasks:
  * get:
- *  summary: Obtiene todas las sesiones de la BD
+ *  summary: 
  */
 
 // Obtener ganancias por mes
-
 router.get('/ganancias/monthly/:email', _ganancias.getMonthlyProfits);
+
+// Obtiene las ganancias del mes actual
+router.get('/ganancias/actualProfit/:email', _ganancias.getActualProfit);
 var _default = router;
 exports["default"] = _default;
